@@ -1,0 +1,97 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'untitled.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.setEnabled(True)
+        Form.resize(665, 456)
+        font = QtGui.QFont()
+        font.setBold(False)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(50)
+        font.setStrikeOut(False)
+        Form.setFont(font)
+        Form.setAcceptDrops(False)
+        Form.setAutoFillBackground(False)
+        self.gridLayout_2 = QtWidgets.QGridLayout(Form)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setObjectName("gridLayout")
+        self.label_3 = QtWidgets.QLabel(Form)
+        self.label_3.setText("")
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
+        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2.setText("")
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 3, 0, 1, 2)
+        self.pushButton = QtWidgets.QPushButton(Form)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(30)
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 1, 1, 1, 2)
+        self.label_7 = QtWidgets.QLabel(Form)
+        self.label_7.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout.addWidget(self.label_7, 3, 2, 1, 3)
+        self.label = QtWidgets.QLabel(Form)
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(32)
+        self.label.setFont(font)
+        self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.label.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 7)
+        self.pushButton_2 = QtWidgets.QPushButton(Form)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(30)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.gridLayout.addWidget(self.pushButton_2, 1, 4, 1, 2)
+        self.label_4 = QtWidgets.QLabel(Form)
+        self.label_4.setText("")
+        self.label_4.setObjectName("label_4")
+        self.gridLayout.addWidget(self.label_4, 1, 3, 1, 1)
+        self.label_5 = QtWidgets.QLabel(Form)
+        self.label_5.setText("")
+        self.label_5.setObjectName("label_5")
+        self.gridLayout.addWidget(self.label_5, 2, 5, 1, 1)
+        self.pushButton_3 = QtWidgets.QPushButton(Form)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout.addWidget(self.pushButton_3, 3, 6, 1, 1)
+        self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.pushButton.setText(_translate("Form", "单相"))
+        self.label_7.setText(_translate("Form", "Directed By GZY"))
+        self.label.setText(_translate("Form", "报废电能表自动化处理装置"))
+        self.pushButton_2.setText(_translate("Form", "三相"))
+        self.pushButton_3.setText(_translate("Form", "退出"))
