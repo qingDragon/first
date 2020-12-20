@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="树莓派" createEmptyFolders="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="pi@192.168.8.109:22" createEmptyFolders="true">
     <serverData>
       <paths name="pi@192.168.12.106:22">
         <serverdata>
@@ -23,6 +23,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="pi@192.168.8.109:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Desktop/py" local="$PROJECT_DIR$" web="/Desktop/py" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="树莓派">
         <serverdata>
           <mappings>
@@ -31,5 +38,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

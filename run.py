@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import time
 import threading
 
+
 class mwindow(QWidget,Ui_Form):
     i = False
 
@@ -30,79 +31,169 @@ class mwindow(QWidget,Ui_Form):
 
         self.pushButton_3.clicked.connect(self.right_run)
         self.pushButton_4.clicked.connect(self.down_run)
-        self.pushButton_5.clicked.connect(self.test_run)
+        self.pushButton_5.clicked.connect(self.test)
         self.pushButton_6.clicked.connect(self.stop)
 
         self.pushButton_7.clicked.connect(QApplication.quit)#退出按钮连接槽函数
+    def start_z(self):
+        "完成Z轴钻头的上下运动"
+        Z = 80
+        count = 0
+        mwindow.i = False
+        GPIO.output(11,GPIO.HIGH)
+        while count < (Z/5)*400:
+            if mwindow.i:
+                break
+            time.sleep(0.0005)
+            GPIO.output(15, GPIO.HIGH)
+            time.sleep(0.0005)
+            GPIO.output(15, GPIO.LOW)
+            count += 1
+        count = 0
+        GPIO.output(11,GPIO.LOW)
+        while count < (Z/5)*400:
+            if mwindow.i:
+                break
+            time.sleep(0.0005)
+            GPIO.output(15, GPIO.HIGH)
+            time.sleep(0.0005)
+            GPIO.output(15, GPIO.LOW)
+            count += 1
+
+    def start_x(self,n):
+        count = 0
+        mwindow.i = False
+        if n>0:
+            GPIO.output(12, GPIO.LOW)
+        elif n<0:
+            GPIO.output(12,GPIO.HIGH)
+        while count < (abs(n)/5)*400:
+            if mwindow.i:
+                break
+            time.sleep(0.0003)
+            GPIO.output(16, GPIO.HIGH)
+            time.sleep(0.0003)
+            GPIO.output(16, GPIO.LOW)
+            count += 1
+
+    def start_y(self,n):
+        count = 0
+        mwindow.i = False
+        if n > 0:
+         GPIO.output(13, GPIO.HIGH)
+        elif n < 0:
+         GPIO.output(13, GPIO.LOW)
+        while count < (abs(n) / 5) * 400:
+            if mwindow.i:
+             break
+            time.sleep(0.0003)
+            GPIO.output(7, GPIO.HIGH)
+            time.sleep(0.0003)
+            GPIO.output(7, GPIO.LOW)
+            count += 1
 
     def test(self):
-        while True:
-            count =0
-
-            mwindow.i = False
-
-            GPIO.output(11, GPIO.HIGH)
-            GPIO.output(12, GPIO.HIGH)
-            GPIO.output(13, GPIO.HIGH)
-            while count < 1000:
-
-
-                if mwindow.i:
-                    break
-
-                time.sleep(0.0001)
-                GPIO.output(15, GPIO.LOW)
-                time.sleep(0.0001)
-                GPIO.output(15, GPIO.HIGH)
-                print("finished up")
-
-                time.sleep(0.0001)
-                GPIO.output(16, GPIO.LOW)
-                time.sleep(0.0001)
-                GPIO.output(16, GPIO.HIGH)
-                print("finished left!")
-                # 摄像头移动
-                time.sleep(0.0001)
-                GPIO.output(7, GPIO.LOW)
-                time.sleep(0.0001)
-                GPIO.output(7, GPIO.HIGH)
-                print("finished forward!")
-                count += 1
-            if mwindow.i:
-                break
-            count = 0
-            GPIO.output(11, GPIO.LOW)#z轴方向
-            GPIO.output(12, GPIO.LOW)#x轴方向
-            GPIO.output(13, GPIO.LOW)#z轴方向
-            while count < 1000:
-
-                if mwindow.i:
-                    break
-
-                time.sleep(0.0001)
-                GPIO.output(15, GPIO.LOW)
-                time.sleep(0.0001)
-                GPIO.output(15, GPIO.HIGH)
-                print("finished down")
-                time.sleep(0.0001)
-                GPIO.output(16, GPIO.LOW)
-                time.sleep(0.0001)
-                GPIO.output(16, GPIO.HIGH)
-                print("finished right")
-
-                time.sleep(0.0001)
-                GPIO.output(7, GPIO.LOW)
-                time.sleep(0.0001)
-                GPIO.output(7, GPIO.HIGH)
-                print("finished behind!")
-                count += 1
-            if mwindow.i:
-                break
+        self.start_x(40)
+        self.start_y(80)
+        self.start_z()
+        self.start_y(170)
+        self.start_z()
+        self.start_y(170)
+        self.start_z()
+        self.start_y(170)
+        self.start_z()
+        self.start_x(130)
+        self.start_z()
+        self.start_y(-170)
+        self.start_z()
+        self.start_y(-170)
+        self.start_z()
+        self.start_y(-170)
+        self.start_z()
+        self.start_x(130)
+        self.start_z()
+        self.start_y(170)
+        self.start_z()
+        self.start_y(170)
+        self.start_z()
+        self.start_y(170)
+        self.start_z()
+        self.start_y(-590)
+        self.start_x(-300)
 
 
-    def test_run(self):
-        t = threading.Thread(target=self.test)
-        t.start()
+
+
+
+
+
+    # def test(self):
+    #     '''x轴运动4公分，Y轴12公分(间距17公分)，Z轴下降12公分
+    #     x轴再运动13'''
+    #     while True:
+    #         count =0
+    #
+    #         mwindow.i = False
+    #
+    #         GPIO.output(11, GPIO.HIGH)
+    #         GPIO.output(12, GPIO.HIGH)
+    #         GPIO.output(13, GPIO.HIGH)
+    #         while count < 1000:
+    #             if mwindow.i:
+    #                 break
+    #             time.sleep(0.0001)
+    #             GPIO.output(15, GPIO.LOW)
+    #             time.sleep(0.0001)
+    #             GPIO.output(15, GPIO.HIGH)
+    #             print("finished up")
+    #
+    #             time.sleep(0.0001)
+    #             GPIO.output(16, GPIO.LOW)
+    #             time.sleep(0.0001)
+    #             GPIO.output(16, GPIO.HIGH)
+    #             print("finished left!")
+    #             # 摄像头移动
+    #             time.sleep(0.0001)
+    #             GPIO.output(7, GPIO.LOW)
+    #             time.sleep(0.0001)
+    #             GPIO.output(7, GPIO.HIGH)
+    #             print("finished forward!")
+    #             count += 1
+    #         if mwindow.i:
+    #             break
+    #         count = 0
+    #         GPIO.output(11, GPIO.LOW)#z轴方向
+    #         GPIO.output(12, GPIO.LOW)#x轴方向
+    #         GPIO.output(13, GPIO.LOW)#z轴方向
+    #         while count < 1000:
+    #
+    #             if mwindow.i:
+    #                 break
+    #
+    #             time.sleep(0.0001)
+    #             GPIO.output(15, GPIO.LOW)
+    #             time.sleep(0.0001)
+    #             GPIO.output(15, GPIO.HIGH)
+    #             print("finished down")
+    #             time.sleep(0.0001)
+    #             GPIO.output(16, GPIO.LOW)
+    #             time.sleep(0.0001)
+    #             GPIO.output(16, GPIO.HIGH)
+    #             print("finished right")
+    #
+    #             time.sleep(0.0001)
+    #             GPIO.output(7, GPIO.LOW)
+    #             time.sleep(0.0001)
+    #             GPIO.output(7, GPIO.HIGH)
+    #             print("finished behind!")
+    #             count += 1
+    #         if mwindow.i:
+    #             break
+    #
+    #
+    # def test_run(self):
+    #     t = threading.Thread(target=self.test)
+    #     t.start()
     def stop(self):
 
         mwindow.i = True
@@ -219,12 +310,12 @@ class mwindow(QWidget,Ui_Form):
         t.start()
 
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    w = mwindow()
-
-    w.showFullScreen()
-    sys.exit(app.exec())
+# if __name__ == "__main__":
+#     app = QApplication(sys.argv)
+#     w = mwindow()
+#
+#     w.showFullScreen()
+#     sys.exit(app.exec())
 
 
 #实时的坐标保存在哪？
